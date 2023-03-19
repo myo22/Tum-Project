@@ -27,6 +27,11 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //lombok 라이브러리는 이미 추기되었지만 테스트 환경이 빠져있으므로 아래 두줄로 추가한 것이다.
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
 }
 
 tasks.named('test') {
