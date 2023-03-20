@@ -39,4 +39,22 @@ public class DataSourceTests {
         log.info(board);
 
     }
+
+    @Test
+    public void testUpdate(){
+        Board board = Board.builder()
+                .bno(1L)
+                .content("내가 이제 바꿀 문장")
+                .writer("작성자도 바꿔버려")
+                .title("제목도 바꿔버려")
+                .build();
+        Board result = boardRepository.save(board);
+        log.info(result);
+    }
+
+    @Test
+    public void testDelete(){
+        Long bno = 5L;
+        boardRepository.deleteById(bno);
+    }
 }
