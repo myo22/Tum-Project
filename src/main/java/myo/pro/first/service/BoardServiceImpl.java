@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service //해당 클래스를 루트 컨테이너에 빈(Bean) 객체로 생성해주는 어노테이션입니다.
 @Log4j2
 @Transactional //데이터 추가, 갱신, 삭제 등으로 이루어진 작업을 처리하던 중 오류가 발생했을 때 모든 작업들을 원상태로 되돌릴 수 있다. 모든 작업들이 성공해야만 최종적으로 데이터베이스에 반영하도록 한다.(당근마켓 벽돌방지)
@@ -27,6 +29,38 @@ public class BoardServiceImpl implements BoardService{
         Long bno = boardRepository.save(board).getBno();
 
         return bno;
+    }
+
+    @Override
+    public BoardDTO read(Long bno){
+
+        Optional<Board> result = boardRepository.findById(bno);
+
+        Board board = result.orElseThrow();
+
+        BoardDTO boardDTO = modelMapper.map(board, BoardDTO.class);
+
+        return boardDTO;
+    }
+
+    @Override
+    public void modify(BoardDTO boardDTO){
+
+        Optional<Board> result = boardRepository.findById(boardDTO.getBno());
+
+        Board board = result.orElseThrow();
+
+        board.chage(boardDTO.getTitle(), boardDTO.getContent(), boardDTO.getWriter());
+
+        boardRepository.save(board);
+
+    }
+
+    @Override
+    public void remove(Long bno){
+
+        boardRepository.deleteById(bno);
+
     }
 
 }

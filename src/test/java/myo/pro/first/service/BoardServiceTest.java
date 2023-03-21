@@ -29,5 +29,18 @@ public class BoardServiceTest {
         log.info("내가 등록한 번호: " + bno);
     }
 
+    @Test
+    public void testModify(){
+
+        //변경에 필요한 데이터만
+        BoardDTO boardDTO = BoardDTO.builder()
+                .bno(4L)
+                .title("바뀌는 테스트용")
+                .content("이것도 바뀌는거")
+                .writer("작성자도 바뀌나")
+                .build();
+
+        boardService.modify(boardDTO);
+    }
 
 }

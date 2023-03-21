@@ -26,4 +26,11 @@ public class Board extends BaseTime{
     @Column(length = 50, nullable = false)
     private String writer;
 
+    //실전에서는 작성자까지 바꿀 이유는 없음 나중에 작성자는 없애주자
+    public void chage(String title, String content, String writer){
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+    }
+
 }
