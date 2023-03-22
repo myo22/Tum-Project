@@ -4,11 +4,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import myo.pro.first.domain.Board;
 import myo.pro.first.dto.BoardDTO;
+import myo.pro.first.dto.PageRequestDTO;
+import myo.pro.first.dto.PageResponseDTO;
 import myo.pro.first.repository.BoardRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.print.Pageable;
 import java.util.Optional;
 
 @Service //해당 클래스를 루트 컨테이너에 빈(Bean) 객체로 생성해주는 어노테이션입니다.
@@ -62,5 +66,19 @@ public class BoardServiceImpl implements BoardService{
         boardRepository.deleteById(bno);
 
     }
+
+    /*
+    @Override
+    public PageResponseDTO<BoardDTO> list(PageRequestDTO pageRequestDTO){
+
+        String[] types = pageRequestDTO.getTypes();
+        String keyword = pageRequestDTO.getKeyword();
+        Pageable pageable = pageRequestDTO.getPageable("bno");
+
+        Page<Board> result = boardRepository.searchAll(types, keyword, pageable);
+
+        return null;
+    }
+    */
 
 }

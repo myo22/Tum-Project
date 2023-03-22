@@ -8,8 +8,8 @@ import java.util.List;
 
 @Getter //모든 필드에 접근자와 설정자가 자동으로 생성됩니다.
 @ToString
-public class PageResponseDTO {
-
+public class PageResponseDTO<E> {
+//String 타입도 지원하고싶고 Integer타입도 지원하고 싶고 많은 타입을 지원하고 싶다. 그러면 String에 대한 클래스, Integer에 대한 클래스 등 하나하나 타입에 따라 만들 것인가? 그건 너무 비효율적이다. 이러한 문제를 해결하기 위해 우리는 제네릭이라는 것을 사용한다.
     private int page;
     private int size;
     private int total;
@@ -24,10 +24,10 @@ public class PageResponseDTO {
     //다음 페이지의 존재 여부
     private boolean next;
 
-    private List<Exception> dtoList;
+    private List<E> dtoList;
 
     @Builder(builderMethodName = "withAll") //기존 builder 이름을 withAll 로 변경
-    public PageResponseDTO(PageRequestDTO pageRequestDTO, List<Exception> dtoList, int total){
+    public PageResponseDTO(PageRequestDTO pageRequestDTO, List<E> dtoList, int total){
 
         if (total <= 0){
             return;
