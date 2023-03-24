@@ -3,6 +3,7 @@ package myo.pro.first.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @ToString
 @Getter
@@ -28,6 +29,12 @@ public class Board extends BaseTime{
 
     //실전에서는 작성자까지 바꿀 이유는 없음 나중에 작성자는 없애주자
     public void chage(String title, String content, String writer){
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+    }
+
+    public void update(String title, String content, String writer){
         this.title = title;
         this.content = content;
         this.writer = writer;

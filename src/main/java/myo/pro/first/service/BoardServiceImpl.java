@@ -3,9 +3,9 @@ package myo.pro.first.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import myo.pro.first.domain.Board;
-import myo.pro.first.dto.BoardDTO;
-import myo.pro.first.dto.PageRequestDTO;
-import myo.pro.first.dto.PageResponseDTO;
+import myo.pro.first.dto.*;
+import myo.pro.first.exception.CustomException;
+import myo.pro.first.exception.ErrorCode;
 import myo.pro.first.repository.BoardRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -80,5 +80,12 @@ public class BoardServiceImpl implements BoardService{
         return null;
     }
     */
+
+    @Override
+    public Long update(Long bno,  BoardDTO boardDTO){
+        Board board = boardRepository.findById(bno).orElseThrow(() -> new CustomException(ErrorCode.POSTS_NOT_FOUND));
+        board.update(boardDTO.getTitle(), boardDTO.getContent(), boardDTO.getWriter());
+        return bno;
+    }
 
 }
