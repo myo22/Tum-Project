@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@RequiredArgsConstructor
 @RequestMapping("/board")
 @Log4j2
 public class BoardController {
 
-    final BoardService boardService;
-    final BoardRepository boardRepository;
-
+    @GetMapping("/list")
+    public String openBoardList(){
+        return "/board/list";
+    }
 
 }
