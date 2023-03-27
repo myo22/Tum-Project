@@ -1,4 +1,4 @@
-package myo.pro.first;
+package myo.pro.first.repository;
 
 import myo.pro.first.domain.Board;
 import myo.pro.first.repository.BoardRepository;
@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import javax.swing.text.html.Option;
 import java.util.Optional;
@@ -56,5 +59,13 @@ public class DataSourceTests {
     public void testDelete(){
         Long bno = 5L;
         boardRepository.deleteById(bno);
+    }
+
+    @Test
+    public void testSearch1(){
+        //2 page order by bno desc
+        Pageable pageable = PageRequest.of(1, 10, Sort.by("bno").descending());
+
+        boardRepository.search1(pageable);
     }
 }
