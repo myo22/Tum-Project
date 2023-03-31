@@ -14,7 +14,7 @@ public class NumberOverflow {
         System.out.println(d1);
         System.out.println(d2);
 
-//        int i1 = 50.0;  //실수는 정수를 포함하지만 정수는 실수를 포함할 수 없기에 컴파일 오류가 발생한다.
+//        int i1 = 50.0;  //실수는 정수를 포함하지만 정수는 실수를 포함할 수 없기에 컴파일 오류가 발생한다. 오버플로우
 //        int i2 = 25.4f;
 
         int i3  = (int)50.0; //이렇게 강제로 타입 변환을 시키는건 명시적 타입 변환이다.
